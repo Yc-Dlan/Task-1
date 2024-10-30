@@ -1,0 +1,21 @@
+version: '3'
+services:
+  opencv-gitkraken-container:
+    build:
+      context: .
+    image: yc-dlan/docker-opencv-gitkraken-new
+    container_name: suspicious_beaver
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /home/yc-dlan/.Xauthority:/root/.Xauthority
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - .:/home/yc-dlan
+    network_mode: host
+    pid: "host"      #  pid 
+    ipc: "host"      #  ipc   
+    privileged: true
+    stdin_open: true
+    tty: true
+    user: "yc-dlan"
+    working_dir: "/home/yc-dlan" # 
