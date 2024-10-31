@@ -12,15 +12,52 @@ class Person_t:
     def introduce(self):
         return '{} {}'.format(self.name, self.age)
 
+#create a subclass_teacher
+class Teacher_t(Person_t):
+    
+    def __init__(self, name, age, subject):
+        super().__init__(name, age)
+        self.subject = str(subject)
+
+    def introduce(self):
+        return '{} {} {}'.format(self.name, self.age, self.subject)
+    
+#create a subclass_student
+class Student_t:
+
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = str(grade)
+
+    def introduce(self):
+        return '{} {} {}'.format(self.name, self.age, self.subject)
+
 #create a basic course.    
 class Course_t:
 
-    def __init__(self, course_name, teacher, student):
-        pass
+    def __init__(self, course_name, teacher, students=None):
+        self.course_name = str(course_name)
+        self.teacher = Teacher_t(teacher)
+        if students is None:
+            self.students = []
+        else:
+            self.students = students
+    
+    def add_student(self, stud):
+        if stud not in self.students:
+            self.students.append(stud)
 
-per_1 = Person_t('LiHua', 18)
-per_2 = Person_t('WangYang', 89)
+    def remove_student(self, stud):
+        if stud in self.students:
+            self.students.remove(stud)
 
+    def show_course_info(self):
+        for stud in self.students:
+            print(self.course_name, self.teacher, self.students)
 
-print(Person_t.introduce(per_1))
-print(Person_t.introduce(per_2))
+#teach_1 = Teacher_t('LiHua', 18, 'Math')
+#teach_2 = Teacher_t('WangYang', 89, 'Chinese')
+
+#stud_1 = Student_t('Dlan', 20, 'freshman')
+#stud_2 = Student_t('Daniel', 21, 'sophomore')
+#stud_3 = Student_t('Dlancy', 22 ,'junior')
