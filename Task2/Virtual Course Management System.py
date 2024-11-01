@@ -22,5 +22,15 @@ class Teacher_t(Person_t):
     def introduce(self):
         return '{} {} {}'.format(self.name, self.age, self.subject)
     
+#create a subclass_student
+class Student_t:
+
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = str(grade)
+
+    def introduce(self):
+        return '{} {} {}'.format(self.name, self.age, self.subject)
+
 
 
