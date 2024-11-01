@@ -44,59 +44,56 @@ class Course_t:
             self.students = []
         else:
             self.students = students
-    
+
+    #define function_add to add new student information
     def add_student(self, stud):
         if stud not in self.students:
             self.students.append(stud)
 
+    #define function_remove to remove the student's information
     def remove_student(self, stud):
         if stud in self.students:
             self.students.remove(stud)
 
+    #define function_show_course_info for print course information
     def show_course_info(self):
         print(f"课程名称：{self.course_name}")
         print(f"授课教师：{self.teacher.name}, 教授科目：{self.teacher.subject}")
         print("选修学生列表：")
         for student in self.students:
-            student.introduce()
+            print(student.introduce())
 
+#create teacher_instantiation             
 teach_1 = Teacher_t('LiHua', 47, 'Math')
 teach_2 = Teacher_t('WangYang', 57, 'Chinese')
 
+#create student_instantiation
 stud_1 = Student_t('Dlan', 20, 'freshman')
 stud_2 = Student_t('Daniel', 21, 'sophomore')
 stud_3 = Student_t('Dlancy', 22 ,'junior')
 
+#create course_instantiation
 cour_1 = Course_t('Math')
 cour_2 = Course_t('Chinese')
 
+#distribute teacher attribute
 cour_1.teacher = teach_1
 cour_2.teacher = teach_2
 
-# 添加学生前检查
-print("添加学生前，cour_1的学生列表：")
-print(cour_1.students)  # 应该显示 []
-
-# 添加学生
+#add 3 new students in the courses' list
 cour_1.add_student(stud_1)
 cour_1.add_student(stud_2)
-cour_1.add_student(stud_3)
+cour_2.add_student(stud_3)
 
-# 添加学生后检查
-print("\n添加学生后，cour_1的学生列表：")
-print(cour_1.students)  # 应该显示 [stud_1, stud_2]
-
-# 打印课程信息
-print("\n使用show_course_info方法打印cour_1的课程信息：")
+#showcase the course information
+print('--->showcase the course information after the add_function:')
 cour_1.show_course_info()
+cour_2.show_course_info()
+print('\n')
 
-# 尝试重复添加同一个学生
-cour_1.add_student(stud_1)  # 这应该不会改变学生列表
+#remove stud_1 from the course information
+cour_1.remove_student(stud_1)
 
-# 再次检查学生列表，确认没有重复添加
-print("\n尝试重复添加后，cour_1的学生列表：")
-print(cour_1.students)  # 应该仍然显示 [stud_1, stud_2]
-
-# 打印课程信息，确认学生列表正确
-print("\n再次使用show_course_info方法打印cour_1的课程信息：")
+#showcase the course information after the remove_function
+print('--->showcase the course information after the remove_function:')
 cour_1.show_course_info()
